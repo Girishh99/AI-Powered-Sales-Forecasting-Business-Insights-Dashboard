@@ -1,179 +1,162 @@
-# Sales Forecasting & Inventory Optimization Analysis 📊
+# 📦 Sales Forecasting & Inventory Optimization
 
-## About the Project
-
-This project focuses on analyzing retail sales data to understand business performance, identify sales patterns, and forecast future demand.
-
-I worked on the complete analytics process — starting from cleaning raw transactional data, performing analysis using Python, building a sales forecasting model using Prophet, and creating an interactive Power BI dashboard to present insights.
-
-The goal of this project was to turn raw sales data into meaningful insights that can help with sales planning and inventory decisions.
+> End-to-end data analytics pipeline combining **time-series forecasting** with an **interactive Power BI dashboard** — built on the Superstore dataset to drive smarter inventory decisions.
 
 ---
 
-# Dataset
+## 🚀 Project Overview
 
-The project uses the **Superstore Sales Dataset**, which contains historical retail transaction data.
+Retailers lose billions annually to stockouts and overstock. This project tackles that problem head-on by:
 
-The dataset includes information about:
+- **Analyzing 4 years** of transactional sales data (~9,994 orders across the US)
+- **Forecasting the next 90 days** of sales using Meta's **Prophet** time-series model
+- **Visualizing demand patterns** and inventory insights in a **Power BI dashboard**
 
-- Orders
-- Products
-- Customers
-- Sales transactions
-- Profit
-- Quantity sold
-- Discounts
-- Shipping details
-- Regional performance
-
-
-### Main Columns
-
-| Column | Description |
-|--------|-------------|
-| Order Date | Date when the order was placed |
-| Ship Date | Date when the order was shipped |
-| Category | Main product category |
-| Sub-Category | Product sub-category |
-| Product Name | Product details |
-| Sales | Revenue generated from sales |
-| Quantity | Number of products sold |
-| Discount | Discount percentage applied |
-| Profit | Profit generated |
-| Region | Sales region |
-| Customer Segment | Customer group |
-
-
-The dataset was cleaned and transformed before performing analysis and forecasting.
+The result is a data-driven system that tells you *what will sell*, *when*, and *how much to stock*.
 
 ---
 
-## Project Highlights
+## 🛠️ Tech Stack
 
-- Cleaned and transformed retail transaction data using Pandas
-- Performed exploratory data analysis to understand sales and profit trends
-- Analyzed product, category, and regional performance
-- Prepared time-series data for forecasting
-- Built a sales forecasting model using Facebook Prophet
-- Created a Power BI dashboard for interactive business analysis
-
-
----
-
-## Tools Used
-
-### Data Analysis
-- Python
-- Pandas
-- NumPy
-
-### Visualization
-- Matplotlib
-- Seaborn
-- Power BI
-
-### Forecasting
-- Facebook Prophet
-
-### Other
-- DAX
-- Power Query
-- Data Modeling
-
+| Layer | Tools |
+|---|---|
+| Data Wrangling | Python, Pandas |
+| Visualization | Matplotlib, Seaborn |
+| Forecasting | Facebook Prophet |
+| Dashboard | Power BI |
+| Notebook | Jupyter Notebook |
 
 ---
 
-## Project Workflow
+## 📁 Repository Structure
 
-### 1. Data Cleaning
+```
+📦 AI-Powered-Sales-Forecasting-Business-Insights-Dashboard/
+├── 📁 Notebook/
+│   └── 📓 Sales_Forecasting_Inventory_Optimization_Analysis.ipynb   # Full forecasting, analysis & modeling workflow
+│
+├── 📁 Dashboard/
+│   ├── 📊 Sales_Forecast_Inventory_Optimization_Dashboard.pbix      # Interactive Power BI dashboard
+│   └── 🖼️ Dashboard_Images/                                         # Dashboard screenshots
+│
+├── 📁 Data/
+│   ├── 📄 Cleaned_Superstore.csv                                    # Cleaned & transformed dataset
+│   ├── 📄 sales_forecast.csv                                        # Complete Prophet forecast output
+│   └── 📄 Future_Forecast.csv                                       # 90-day future sales predictions
+│
+└── 📄 README.md
 
-The raw dataset was cleaned and prepared by:
-
-- Handling missing values
-- Removing duplicate records
-- Converting date columns into proper formats
-- Preparing data for analysis and forecasting
-
-
----
-
-### 2. Exploratory Data Analysis
-
-Analyzed different areas of the business:
-
-- Monthly sales trends
-- Category-wise performance
-- Top-performing products
-- Regional sales contribution
-- Profit analysis
-
+```
 
 ---
 
-### 3. Sales Forecasting
+## 📊 Key Features
 
-Used Facebook Prophet to forecast future sales based on historical sales patterns.
+### 🔍 Exploratory Data Analysis
+- Category distribution and sub-category demand ranking
+- Monthly and yearly sales trend analysis with peak detection
+- Shipping time computation (`Ship Date − Order Date`)
+- Duplicate detection and data quality checks
 
-The forecasting process included:
+### 📈 Time-Series Forecasting with Prophet
+- Trained Meta's **Prophet** model on daily aggregated sales (2014–2017)
+- Generated **90-day forward forecast** with confidence intervals (`yhat_lower`, `yhat_upper`)
+- Captured **weekly and yearly seasonality** components
+- Exported forecast data for seamless Power BI integration
 
-- Preparing time-series data
-- Training the forecasting model
-- Generating future sales predictions
-- Analyzing trends and seasonality
+### 📉 Inventory Demand Insights
+- Identified **top-demand sub-categories** by total quantity sold
+- Ranked products to prioritize restocking decisions
+- Shipping time trends to optimize fulfillment SLAs
 
-
----
-
-# Power BI Dashboard
-
-The Power BI dashboard provides an interactive view of the analysis.
-
-## Dashboard Pages:
-
-### Sales Overview
-
-Includes:
-
-- Total Sales
-- Total Profit
-- Total Orders
-- Quantity Sold
-- Sales trend analysis
-- Category performance
-
-
-### Product & Inventory Analysis
-
-Includes:
-
-- Top-selling products
-- Sub-category demand
-- Quantity analysis
-- Discount impact
-
-
-### Forecast Analysis
-
-Includes:
-
-- Historical sales
-- Future sales prediction
-- Forecast trend visualization
+### 📊 Power BI Dashboard
+- Interactive filters by Region, Category, Segment, and Ship Mode
+- KPI cards for total Sales, Profit, and Quantity
+- Forecast vs. Actuals comparison chart
+- Sub-category demand heatmap for inventory planning
 
 ---
 
-## Key Learnings
+## 📌 Dataset
 
-Through this project, I gained practical experience in:
+**Source:** Superstore Sales Dataset (commonly used benchmark dataset)
 
-- Data cleaning and transformation
-- Business data analysis
-- Time-series forecasting
-- Dashboard development
-- Presenting insights using visualization tools
+| Feature | Detail |
+|---|---|
+| Records | ~9,994 orders |
+| Time Range | 2014 – 2017 |
+| Columns | 21 (Order ID, Customer, Product, Sales, Profit, Discount, Region, etc.) |
+| Engineered Features | `Month-Year`, `Year_Month`, `Shipping Time` |
 
-## Future Improvements
-- Connect dashboard with SQL database
-- Automate forecasting pipeline
-- Add machine learning based demand prediction
-- Deploy dashboard and forecasting model
+---
+
+## 🔮 Forecast Snapshot
+
+The Prophet model was trained on daily sales and predicts the next 90 days with:
+
+- **`yhat`** — point forecast (expected sales)
+- **`yhat_lower` / `yhat_upper`** — 80% confidence interval
+- **Weekly & Yearly seasonality** decomposed separately
+
+```
+Forecast horizon: 90 days beyond 2017-12-30
+Peak predicted period: Q4 (consistent with historical holiday seasonality)
+```
+
+---
+
+## ⚙️ How to Run
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Girishh99/AI-Powered-Sales-Forecasting-Business-Insights-Dashboard.git
+cd AI-Powered-Sales-Forecasting-Business-Insights-Dashboard
+```
+
+### 2. Install Dependencies
+```bash
+pip install pandas matplotlib seaborn prophet jupyter
+```
+
+### 3. Run the Notebook
+```bash
+jupyter notebook Sales_Forecasting_Inventory_Optimization_Analysis.ipynb
+```
+
+### 4. View the Dashboard
+Open `Sales_Forecast_Inventory_Optimization_Dashboard.pbix` in **Power BI Desktop**.
+
+---
+
+## 💡 Business Impact
+
+| Insight | Action |
+|---|---|
+| Q4 demand spikes identified | Pre-stock high-demand SKUs 6–8 weeks ahead |
+| Binders & Paper are top quantity movers | Prioritize warehouse space for office supplies |
+| Average shipping time tracked | Flag delayed orders; optimize carrier contracts |
+| 90-day sales forecast with confidence bands | Set dynamic reorder points with safety stock buffer |
+
+---
+
+## 📸 Dashboard Preview
+
+> *Open Dashboard/Sales_Forecast_Inventory_Optimization_Dashboard.pbix in Power BI Desktop to explore the full interactive dashboard.*
+
+---
+
+## 🙋 Author
+
+**Girish Kumar**
+📧 girish1999k.gk@gmail.com
+🔗 https://www.linkedin.com/in/girishhkumar/
+
+---
+
+## 📄 License
+
+This project is open-source under the [MIT License](LICENSE).
+
+---
+
+*If you found this project helpful, drop a ⭐ — it helps others discover it!*
